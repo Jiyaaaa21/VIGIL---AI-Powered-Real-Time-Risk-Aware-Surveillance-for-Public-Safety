@@ -11,7 +11,7 @@ This repository demonstrates how **AI risk signals would be visualized, escalate
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents
 
 - [What This Project Is (and Is Not)](#-what-this-project-is-and-is-not)
 - [Core Concept](#-core-concept)
@@ -30,15 +30,15 @@ This repository demonstrates how **AI risk signals would be visualized, escalate
 
 ---
 
-## 📌 What This Project Is (and Is Not)
+##  What This Project Is (and Is Not)
 
-### ✅ What it *is*
+###  What it *is* ?
 - A **production-style surveillance command-center UI**
 - Focused on **risk-based monitoring**, not raw video feeds
 - Demonstrates **system behavior, escalation logic, and explainability**
 - Designed to be **backend-agnostic and future-ready**
 
-### ❌ What it is *not*
+###  What it is *not*
 - Not a real CCTV system  
 - Not performing live crime detection  
 - Not connected to physical cameras  
@@ -46,7 +46,7 @@ This repository demonstrates how **AI risk signals would be visualized, escalate
 
 ---
 
-## 🧠 Core Concept
+##  Core Concept
 
 Instead of binary *“crime detected”* outputs, the system is designed around:
 
@@ -60,13 +60,13 @@ This mirrors how **real-world AI surveillance systems are evaluated, validated, 
 
 ---
 
-## 🧭 Application Structure
+##  Application Structure
 
 The frontend consists of **four focused views**, each answering a specific operational question.
 
 ---
 
-### 1️⃣ Camera Risk View (`/cameras`)
+### 1. Camera Risk View (`/cameras`)
 **Tactical · Snapshot-level monitoring**
 
 - 3×3 grid of camera tiles (simulated)
@@ -81,7 +81,7 @@ The frontend consists of **four focused views**, each answering a specific opera
 
 ---
 
-### 2️⃣ Area Risk View (`/areas`)
+### 2. Area Risk View (`/areas`)
 **Strategic · Situational awareness**
 
 - Aggregates camera-level risks into zones
@@ -93,7 +93,7 @@ The frontend consists of **four focused views**, each answering a specific opera
 
 ---
 
-### 3️⃣ Event Intelligence Timeline (`/timeline`)
+### 3. Event Intelligence Timeline (`/timeline`)
 **Explainability · Audit trail**
 
 Chronological record of system decisions:
@@ -108,7 +108,7 @@ Designed to answer:
 
 ---
 
-### 4️⃣ System Health & Readiness (`/system`)
+### 4. System Health & Readiness (`/system`)
 **Operational reliability**
 
 - Simulated infrastructure metrics:
@@ -120,7 +120,7 @@ Designed to answer:
 
 ---
 
-## 🖼️ Screenshots
+##  Screenshots
 
 > All screenshots are taken from the running frontend using **simulated data**.
 
@@ -144,7 +144,7 @@ surveillance-dashboard\src\screenshots\system.jpeg
 
 ---
 
-## 🖼️ Data & Camera Inputs
+##  Data & Camera Inputs
 
 ### Phase 1 — Current (This Repository)
 
@@ -174,7 +174,7 @@ The frontend is already structured to accept these inputs with **minimal refacto
 
 ---
 
-## 🔁 Simulation Details
+##  Simulation Details
 
 This frontend uses a **time-driven simulation engine** designed to mimic
 real-world AI surveillance behavior.
@@ -190,7 +190,7 @@ real-world AI surveillance behavior.
 
 ---
 
-## 🎯 Design Philosophy
+##  Design Philosophy
 
 - The system acts autonomously; the operator observes
 - Escalation is gradual, not reactive
@@ -201,7 +201,7 @@ real-world AI surveillance behavior.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Framework:** React  
 - **Runtime:** Node.js  
@@ -211,7 +211,7 @@ real-world AI surveillance behavior.
 
 ---
 
-## ▶️ Running the Project Locally
+##  Running the Project Locally
 
 ### Prerequisites
 Ensure the following are installed:
@@ -239,7 +239,7 @@ Step 4: Open in browser
 http://localhost:3000
 
 
-🔮 Roadmap
+ Roadmap
 
 Phase 1 — Completed
 

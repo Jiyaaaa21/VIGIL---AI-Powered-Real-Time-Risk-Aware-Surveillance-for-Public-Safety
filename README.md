@@ -1,79 +1,202 @@
 # VIGIL — AI-Powered Real-Time Risk-Aware Surveillance for Public Safety
 
-![Status](https://img.shields.io/badge/status-phase--1-blue)
-![Frontend](https://img.shields.io/badge/frontend-react-61dafb)
-![Backend](https://img.shields.io/badge/backend-ml%20model-yellow)
-![Data](https://img.shields.io/badge/data-ucf--crime-orange)
-![Deployment](https://img.shields.io/badge/deployment-not%20live-lightgrey)
-
 VIGIL is a **risk-aware surveillance system prototype** designed to demonstrate how
-**AI-driven activity recognition and risk signals** can be visualized, escalated,
+**AI-driven perception models** and **risk signals** can be visualized, escalated,
 aggregated, and explained for **public safety and situational awareness**.
 
 This repository contains **both frontend and backend work completed in Phase 1**,
-along with a clear roadmap toward real-time, end-to-end deployment.
+along with a clearly defined roadmap toward a real-time, end-to-end system.
 
 ---
 
-## 📌 Problem Statement
+##  Problem Statement
 
 **Real-Time Risk-Aware Surveillance for Public Safety**
 
-Traditional surveillance systems rely on manual monitoring and binary alerts.
-VIGIL addresses this gap by introducing a **risk-based, explainable, and scalable**
+Traditional surveillance systems rely heavily on manual monitoring and binary alerts.
+VIGIL addresses this limitation by proposing a **risk-based, explainable, and scalable**
 approach to multi-camera surveillance—prioritizing **situational awareness**
-over automated judgment.
+over automated or opaque decision-making.
 
 ---
 
-## 🧭 Project Scope (Phase 1)
+##  Project Scope (Phase 1)
 
 ### What is implemented
 - A **high-fidelity frontend dashboard** simulating a real surveillance command center
-- A **trained deep learning model** for multi-class crime activity recognition
-- Clear separation between **perception (model)** and **decision visualization (UI)**
+- **Two trained deep learning perception models**:
+  - Crime / Activity Recognition
+  - Weapon Detection
+- Clear separation between:
+  - **Perception (models)**
+  - **Risk abstraction (simulated)**
+  - **Decision visualization (frontend)**
 
 ### What is NOT yet implemented
 - Live camera feeds
 - Real-time backend–frontend integration
-- On-device or edge deployment
+- Automated enforcement or deployment
 
 ---
 
-## 🧱 System Architecture (High-Level)
+##  System Architecture
 
-[ UCF-Crime Dataset ]
-        ↓
-[ DenseNet121-Based Activity Recognition Model ]
-        ↓
-[ Class Probabilities & Confidence Scores ]
-        ↓
-[ Risk Abstraction Layer (Simulated in Phase 1) ]
-        ↓
-[ VIGIL Frontend Dashboard ]
+VIGIL follows a **modular, layered architecture** that cleanly separates:
+
+- **Perception (AI models)**
+- **Risk abstraction & decision logic**
+- **Visualization & operator interface**
+
+This design enables scalability, explainability, and smooth transition from
+offline experimentation (Phase 1) to real-time deployment (Phase 2).
+
+---
+
+##  Architecture — Phase 1 (Current Implementation)
+
+Phase 1 focuses on **offline-trained models** and a **frontend-first system design**.
+No live camera feeds or real-time inference are connected yet.
 
 
-Phase 1 focuses on validating **model capability** and **UI/system design**
+                ┌─────────────────────────────────────────────┐
+                │          Offline Surveillance Data          │
+                │            (UCF-Crime Dataset)              │
+                └──────────────────────┬──────────────────────┘
+                                       │
+                                       ▼
+                ┌─────────────────────────────────────────────┐
+                │          Backend Perception Models          │
+                │                                             │
+                │   ┌─────────────────────────────────────┐  │
+                │   │ Activity Recognition Model           │  │
+                │   │ DenseNet121 (14 Activity Classes)    │  │
+                │   │                                     │  │
+                │   │ • Behavioral understanding           │  │
+                │   │ • Class probabilities                │  │
+                │   │ • Offline trained & evaluated        │  │
+                │   └─────────────────────────────────────┘  │
+                │                                             │
+                │   ┌─────────────────────────────────────┐  │
+                │   │ Weapon Detection Model               │  │
+                │   │ YOLOv8 (Object Detection)            │  │
+                │   │                                     │  │
+                │   │ • Weapon localization                │  │
+                │   │ • Bounding boxes + confidence        │  │
+                │   └─────────────────────────────────────┘  │
+                │                                             │
+                └──────────────────────┬──────────────────────┘
+                                       │
+                                       ▼
+                ┌─────────────────────────────────────────────┐
+                │      Risk Abstraction Layer (Simulated)     │
+                │                                             │
+                │ • Combines model confidence signals         │
+                │ • Produces risk scores & severity levels    │
+                │ • Temporal logic mocked in Phase 1          │
+                └──────────────────────┬──────────────────────┘
+                                       │
+                                       ▼
+                ┌─────────────────────────────────────────────┐
+                │            VIGIL Frontend UI                │
+                │                                             │
+                │ • Camera Risk View                          │
+                │ • Area Risk View                            │
+                │ • Event Intelligence Timeline               │
+                │ • System Health & Readiness                 │
+                │                                             │
+                │ (Consumes simulated backend-like data)      │
+                └─────────────────────────────────────────────┘
+
+
+---
+
+### 🔹 Phase 2 Architecture (Planned)
+
+                ┌─────────────────────────────────────────────┐
+                │        Live Camera Feeds / CCTV             │
+                │        (RTSP / IP / Video Streams)          │
+                └──────────────────────┬──────────────────────┘
+                                       │
+                                       ▼
+                ┌─────────────────────────────────────────────┐
+                │        Real-Time Inference Backend          │
+                │                                             │
+                │ • Activity Recognition                     │
+                │   - CNN–LSTM / TCN / 3D CNNs                │
+                │ • Weapon Detection                         │
+                │   - YOLOv8 (Multi-Class)                   │
+                │ • Optional multi-modal inputs               │
+                │   - Optical flow / Audio                   │
+                └──────────────────────┬──────────────────────┘
+                                       │
+                                       ▼
+                ┌─────────────────────────────────────────────┐
+                │        Risk Fusion & Decision Layer         │
+                │                                             │
+                │ • Model output fusion                       │
+                │ • Temporal persistence logic                │
+                │ • Alert & severity generation               │
+                │ • Explainable escalation rules              │
+                └──────────────────────┬──────────────────────┘
+                                       │
+                                       ▼
+                ┌─────────────────────────────────────────────┐
+                │          VIGIL Frontend (Live)              │
+                │                                             │
+                │ • Real-time risk updates                    │
+                │ • Alert notifications                      │
+                │ • Incident reporting & audit logs           │
+                │ • Role-based access control                 │
+                └─────────────────────────────────────────────┘
+
+
+---
+
+###  Architectural Design Principles
+
+- **Separation of Concerns**
+  - AI models handle perception
+  - Risk layer handles abstraction
+  - Frontend handles interpretation
+
+- **Risk-First Design**
+  - No binary “crime detected”
+  - Continuous, confidence-aware escalation
+
+- **Explainability**
+  - Every alert is traceable via model outputs and timeline
+
+- **Scalable Evolution**
+  - Phase 1 → Phase 2 without frontend redesign
+
+---
+
+> **Note**  
+> Phase 1 validates system design and model capability.  
+> Phase 2 operationalizes the same architecture for real-time deployment.
+
+
+
+Phase 1 focuses on validating **model capability** and **system design**
 before real-time integration.
 
 ---
 
-## 🖥️ Frontend (Phase 1)
+##  Frontend — VIGIL Dashboard (Phase 1)
 
 ### Overview
 
 The frontend is a **React-based, production-style surveillance dashboard**
 designed to resemble a real-world operations command center.
 
-It consumes **simulated risk signals** that mirror expected backend outputs.
+It consumes **simulated risk signals** that mirror expected backend outputs,
+allowing validation of UI behavior, escalation logic, and explainability.
 
 ---
 
 ### Frontend Views
 
-#### 1️⃣ Camera Risk View
-**Tactical · Snapshot-Level Monitoring**
-
+#### 1. Camera Risk View — Tactical Monitoring
 - 3×3 grid of simulated camera feeds
 - Each camera displays:
   - Risk score
@@ -81,117 +204,148 @@ It consumes **simulated risk signals** that mirror expected backend outputs.
   - Zone
   - Status (Normal / Suspicious / High Risk)
 - Automatic escalation of the highest-risk camera
-- Snapshot refresh cadence: **every 5 seconds**
+- Snapshot refresh cycle: **every 5 seconds**
 - Bounding boxes rendered on all frames (mocked)
 
 ---
 
-#### 2️⃣ Area Risk View
-**Strategic · Situational Awareness**
-
-- Aggregates camera-level risk into zones
+#### 2. Area Risk View — Situational Awareness
+- Aggregates camera-level risk into abstract zones
 - Displays:
   - Zone risk indicators
   - Risk persistence heat matrix
   - System-wide KPIs
-- Uses abstract zones (not real geographic maps)
+- Designed for strategic oversight
 
 ---
 
-#### 3️⃣ Event Intelligence Timeline
-**Explainability · Audit Trail**
-
-- Chronological record of system decisions:
-  - Risk increases
+#### 3. Event Intelligence Timeline — Explainability
+- Chronological audit trail of:
+  - Risk changes
   - Camera escalations
   - Alert confirmations
   - Risk normalization
-- Answers: **“Why did the system act?”**
+- Answers the question:
+  **“Why did the system act?”**
 
 ---
 
-#### 4️⃣ System Health & Readiness
-**Operational Reliability**
-
-- Simulated system metrics:
+#### 4. System Health & Readiness
+- Simulated infrastructure metrics:
   - Cameras online
   - Active alerts
   - System mode
   - CPU, memory, network usage
-- Focuses on system stability, not analytics
+- Focuses on operational reliability
 
 ---
 
 ### Frontend Technology Stack
-
 - **Framework:** React
 - **Runtime:** Node.js
 - **State Management:** Centralized global state
-- **Styling:** Custom dark, dashboard-style UI
+- **Styling:** Custom dark dashboard UI
 - **Backend Dependency:** None (mock data only)
 
 ---
 
-## 🧠 Backend Model (Phase 1)
+##  Backend Models (Phase 1)
 
-### Model Overview
+VIGIL’s backend in Phase 1 consists of **two complementary AI perception modules**.
 
-The Phase 1 backend implements a **multi-class crime activity recognition model**
-trained on the **UCF-Crime dataset** using a **DenseNet121** backbone.
+---
 
-The model serves as the **perception layer** for VIGIL.
+##  Model 1: Crime & Activity Recognition (UCF-Crime)
+
+### Overview
+
+A **multi-class crime activity recognition model** trained on the **UCF-Crime dataset**
+using a **DenseNet121** backbone.  
+This model provides **high-level behavioral understanding** from video frames.
 
 ---
 
 ### Architecture
-
-- **Backbone:** DenseNet121
-  - ImageNet-pretrained weights
-- **Input:** RGB video frames resized to **64 × 64**
-- **Feature Extraction:** High-level spatial features
-- **Classification Head:**
-  - Fully connected dense layers
-  - Dropout regularization
-- **Output:** Softmax over **14 crime-related activity classes**
+- **Backbone:** DenseNet121 (ImageNet-pretrained)
+- **Input:** RGB frames resized to **64 × 64**
+- **Classification Head:** Dense layers + dropout
+- **Output:** Softmax over **14 activity classes**
 
 ---
 
-### Training Configuration
+### Training & Evaluation
+- **Loss:** Categorical Cross-Entropy
+- **Optimizer:** SGD
+- **Metric:** ROC–AUC (micro-average)
 
-- **Loss Function:** Categorical Cross-Entropy
-- **Optimizer:** Stochastic Gradient Descent (SGD)
-- **Dataset:** UCF-Crime
-- **Evaluation Metric:** ROC–AUC (micro-average)
-
-ROC–AUC is chosen due to the **severe class imbalance** in surveillance datasets.
-
----
-
-### Model Performance
-
-- **Overall ROC–AUC (micro-average):** ~0.84
-- Robust discrimination across:
-  - Violent activities
-  - Non-violent anomalous events
+**Performance:**
+- Overall ROC–AUC: **~0.84**
+- Strong separation between:
   - Normal behavior
-- Clear separation between normal and anomalous classes in ROC analysis
-
-These results demonstrate the effectiveness of **DenseNet-based spatial feature extraction**
-for large-scale crime activity recognition.
+  - Non-violent anomalies
+  - Violent activities
 
 ---
 
-### Role in Phase 1 System
-
-In Phase 1:
-- The model is **trained and evaluated offline**
-- Its outputs inform the **design of frontend risk abstractions**
-- The frontend currently uses **mocked signals** shaped after real model outputs
-- No real-time inference pipeline is active yet
+### Role in Phase 1
+- Trained and evaluated **offline**
+- Produces class probabilities and confidence scores
+- Informs frontend **risk simulation logic**
+- Not yet deployed in real time
 
 ---
 
-## ▶️ Running the Frontend Locally
+##  Model 2: Weapon Detection System (YOLOv8)
+
+### Overview
+
+An **object detection–based weapon detection system**
+implemented using **YOLOv8**.
+
+Unlike classification, this model performs **spatial localization**,
+detecting both **presence and position** of weapons in images.
+
+---
+
+### What Has Been Built
+- YOLOv8-based weapon detector
+- Complete training and inference pipeline
+- GPU-accelerated workflow
+- Bounding box visualization
+- Exportable, deployment-ready model
+
+---
+
+### Technical Architecture
+- **Model:** YOLOv8
+- **Framework:** PyTorch (Ultralytics)
+- **Problem Type:** Object Detection
+- **Input:** Images
+- **Output:** Bounding boxes + confidence scores
+
+---
+
+### Key Capabilities
+- Real-time weapon detection (model-level)
+- Accurate localization
+- Suitable for surveillance and security systems
+- Optimized for fast inference on GPU
+
+---
+
+##  Relationship Between the Two Models
+
+- **Activity Recognition** answers: *What is happening?*
+- **Weapon Detection** answers: *Is there an explicit physical threat?*
+
+In future phases, outputs from both models will be:
+- Fused into a **unified risk abstraction layer**
+- Used to trigger **alerts and escalations**
+- Visualized coherently in the VIGIL dashboard
+
+---
+
+##  Running the Frontend Locally
 
 ### Prerequisites
 - Node.js (v18+ recommended)
@@ -203,20 +357,16 @@ node -v
 npm -v
 
 
-### Steps
-
 git clone <https://github.com/Jiyaaaa21/VIGIL---AI-Powered-Real-Time-Risk-Aware-Surveillance-for-Public-Safety>
-cd surveillance-dashboard
+cd vigil-frontend
 npm install
 npm run dev
 
-##  Open in Browser
-
+Open in browser
 http://localhost:3000
 
 
-
-## 🔮 Future Enhancements (Phase 2+)
+##  Future Enhancements (Phase 2+)
 
 ### Backend Enhancements
 - Temporal modeling using **CNN–LSTM**, **Temporal Convolutional Networks (TCN)**, or **3D CNNs**
@@ -228,10 +378,18 @@ http://localhost:3000
 
 ---
 
+### Weapon Detection Extensions
+- **Multi-class weapon detection** (e.g., pistols, rifles, automatic weapons)
+- **Real-time video and CCTV inference**
+- **Confidence-based alert triggering** for rapid threat response
+- **Edge-device optimization** for low-latency deployment
+
+---
+
 ### System & Deployment
-- Real-time backend inference service
-- Live camera integration via **RTSP / IP streams**
-- Risk abstraction layer derived from model probability outputs
+- **Real-time backend inference service**
+- **Live camera integration** via RTSP / IP streams
+- **Risk abstraction layer** derived from model probability outputs
 - **Edge and cloud deployment** strategies for scalable operation
 - **Scalable alerting pipeline** for real-world surveillance environments
 
@@ -242,3 +400,11 @@ http://localhost:3000
 - **Live risk updates** driven by real-time model outputs
 - Incident **export, reporting, and audit logs**
 - **Role-based access control (RBAC)** for operators and administrators
+
+---
+
+##  Disclaimer
+
+VIGIL is a **research and demonstration prototype currently**.  
+It does **not** perform real surveillance or automated enforcement  
+and should **not** be used for operational decision-making.
