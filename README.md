@@ -358,7 +358,7 @@ npm -v
 
 
 git clone <https://github.com/Jiyaaaa21/VIGIL---AI-Powered-Real-Time-Risk-Aware-Surveillance-for-Public-Safety>
-cd vigil-frontend
+cd surveillance-dashboard
 npm install
 npm run dev
 
